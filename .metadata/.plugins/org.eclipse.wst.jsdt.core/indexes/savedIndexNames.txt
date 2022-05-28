@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+/home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1984030983.index
+737684646.index
+3609033206.index
+2824341583.index
+830627805.index
+3302114794.index

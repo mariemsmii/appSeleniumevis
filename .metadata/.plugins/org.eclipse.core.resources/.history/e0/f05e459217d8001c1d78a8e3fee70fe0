@@ -1,5 +1,0 @@
-package fr.decade.pfe.sftp.connection;
-
-public class SftpConnection {
-
-}

@@ -59,7 +59,6 @@ public class SftpConnectionImpl implements SftpConnection{
 		{
 			final ChannelSftp channelSftp = sftpConnection(username, password, remoteHost, remotePort, sessionTimeout,
 					channelTimeout);
-			channelSftp.connect();
 			channelSftp.put(csvLocalFile, remoteFile);
 			channelSftp.exit();
 			reslt = true;
@@ -68,10 +67,7 @@ public class SftpConnectionImpl implements SftpConnection{
 		{
 			System.out.println("Failed to upload the file " + sftpException.getMessage());
 		}
-		catch (final JSchException e)
-		{
-			System.out.println("Failed to connect " + e.getMessage());
-		}
+		
 		return reslt;
 	}
 

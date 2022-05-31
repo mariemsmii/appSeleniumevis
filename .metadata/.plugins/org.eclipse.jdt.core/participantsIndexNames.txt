@@ -1,6 +1,14 @@
 INDEX VERSION 1.131
+/home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3243616432.index
+/AhmedTraining/src/main/resources
 /home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1521481580.index
 /PfeSeleniumApp/src/test/java
+/home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3416069168.index
+/AhmedTraining/src/main/resources
+/home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3873512095.index
+/AhmedTraining/src/main/resources
+/home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1332567458.index
+/AhmedTraining/src/main/resources
 /home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/153970692.index
 /PfeSeleniumApp/src/test/java
 /home/mariem/eclipse-workspace1/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1133978717.index

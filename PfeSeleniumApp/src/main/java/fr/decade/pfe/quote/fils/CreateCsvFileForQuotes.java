@@ -12,26 +12,27 @@ import fr.decade.pfe.sftp.connection.impl.SftpConnectionImpl;
 
 public class CreateCsvFileForQuotes {
 	
-	SftpConnectionImpl sftpConnection;
+	SftpConnectionImpl sftpConnection = new SftpConnectionImpl();
 	
 	String username = "erptohost";
 	String password = "erptohost";
-	String remoteHost ="ftpserver";
-	int remotePort = 22 ;
+	String remoteHost ="127.0.0.1";
+	int remotePort = 10022 ;
 	int  sessionTimeout = 100000;
 	int channelTimeout = 500000;
-	//String remoteDir = "usersQuotes/quotes";
-	//String localPath ="/home/mariem/Bureau/quotes";
 	String regularFileNameExpression ="CsvQuote";
-	String csvLocalFile ="/home/mariem/Bureau/quotes/CsvQuote.csv";
+	String csvLocalFileQuote ="/home/mariem/Bureau/quotes/CsvQuote.csv";
 	String remoteFile ="usersQuotes/quotes/CsvQuote.csv";
+	String remoteFileProducts ="usersQuotes/products/CsvProductsQuote.csv";
 	boolean result ;
 	boolean isUploaded ;
+	String createdSuccessQuotesPath ="/home/mariem/Bureau/quotes/3CsvQuote.csv";
+	String createdSuccessQuotesPathProducts ="/home/mariem/Bureau/quotes/products/CsvProductsQuote.csv";
 	
 	
 	public  boolean  createQuoteCsvFile () {
 			
-			final String createdSuccessQuotesPath ="";
+			
 	    	final File createdSuccessQuotes = new File(createdSuccessQuotesPath);
 	    	try
 			{
@@ -67,7 +68,7 @@ public class CreateCsvFileForQuotes {
 			{
 				e.printStackTrace();
 			}
-	    	isUploaded = sftpConnection.upload(csvLocalFile, remoteFile, username, password, remoteHost, remotePort, sessionTimeout, channelTimeout);
+	    	isUploaded = sftpConnection.upload(createdSuccessQuotesPath, remoteFile, username, password, remoteHost, remotePort, sessionTimeout, channelTimeout);
 	    	if (isUploaded == false )
 	    	{
 	    		System.out.println("failed to upload file for the Quote ");
@@ -76,11 +77,11 @@ public class CreateCsvFileForQuotes {
 		}
 		
 		public  boolean createEntriesCsvFile() {
-			final String createdSuccessQuotesPath ="";
-	    	final File createdSuccessQuotes = new File(createdSuccessQuotesPath);
+			
+	    	final File createdSuccessQuotes = new File(createdSuccessQuotesPathProducts);
 	    	try
 			{
-				final FileWriter outputSuccessfile = new FileWriter(createdSuccessQuotesPath);
+				final FileWriter outputSuccessfile = new FileWriter(createdSuccessQuotesPathProducts);
 
 				final CSVWriter writerSuccessfile = new CSVWriter(outputSuccessfile, ';', CSVWriter.NO_QUOTE_CHARACTER,
 						CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
@@ -92,15 +93,15 @@ public class CreateCsvFileForQuotes {
 				successQuotes.add(new String[]
 						{ "23100000", "1", "3756505", "59", "pieces", "70", "2025.0"});
 				successQuotes.add(new String[]
-						{ "44444444", "1", "3592865", "99", "pieces", "50", "2584.0"});
+						{ "23100000", "1", "3592865", "99", "pieces", "50", "2584.0"});
 				successQuotes.add(new String[]
-						{ "44444444", "1", "3756505", "79", "pieces", "149", "2584.0"});
+						{ "23100000", "1", "3756505", "79", "pieces", "149", "2584.0"});
 				successQuotes.add(new String[]
-						{ "44444444", "1", "3756505", "99", "pieces", "150", "2584.0"});
+						{ "21310000", "1", "3756505", "99", "pieces", "150", "2584.0"});
 				successQuotes.add(new String[]
-						{ "44444444", "1", "3756505", "89", "pieces", "150", "2584.0"});
+						{ "23150000", "1", "3756505", "89", "pieces", "150", "2584.0"});
 				successQuotes.add(new String[]
-						{ "44444444", "1", "3592865", "89", "pieces", "120", "2584.0"});
+						{ "23150000", "1", "3592865", "89", "pieces", "120", "2584.0"});
 				writerSuccessfile.writeAll(successQuotes);
 
 				writerSuccessfile.close();
@@ -109,10 +110,10 @@ public class CreateCsvFileForQuotes {
 			{
 				e.printStackTrace();
 			}
-	    	isUploaded = sftpConnection.upload(csvLocalFile, remoteFile, username, password, remoteHost, remotePort, sessionTimeout, channelTimeout);
+	    	isUploaded = sftpConnection.upload(createdSuccessQuotesPathProducts, remoteFileProducts, username, password, remoteHost, remotePort, sessionTimeout, channelTimeout);
 	    	if (isUploaded == false )
 	    	{
-	    		System.out.println("failed to upload file for the Quote ");
+	    		System.out.println("failed to upload file for the Products ");
 	    	}
 			return result;
 			

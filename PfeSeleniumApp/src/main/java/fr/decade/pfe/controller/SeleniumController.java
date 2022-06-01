@@ -6,10 +6,12 @@ import java.lang.reflect.Method;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import fr.decade.pfe.quote.fils.CreateCsvFileForQuotes;
 import fr.decade.pfe.test.HybrisTests;
@@ -18,36 +20,79 @@ import fr.decade.pfe.test.HybrisTests;
 @RequestMapping("/")
 public class SeleniumController {
 	HybrisTests y123Tests = new HybrisTests();
-	public static final String REDIRECT_PREFIX = "redirect:";
-	private static final String REDIRECT_TEST_URL = REDIRECT_PREFIX + "/";
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String showMessage() {
+	public String getTests() {
 
 		return "home";
 	}
 
+	@RequestMapping(value = "/failedTest", method = RequestMethod.GET)
+	public String getFailedFrontTest() {
+
+		return "failedFrontTest";
+	}
+
+	@RequestMapping(value = "/failedbackTest", method = RequestMethod.GET)
+	public String getFailedBackTest() {
+
+		return "failedBackTest";
+	}
+
+	@RequestMapping(value = "/successbackTest", method = RequestMethod.GET)
+	public String getsuccessBackTest() {
+
+		return "successBackTest";
+	}
+
+	@RequestMapping(value = "/successFrontTest", method = RequestMethod.GET)
+	public String getsuccessFrontTest() {
+
+		return "successFrontTest";
+	}
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String tests() {
+
+		return "test";
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public void tstingBackSelenium(@RequestParam(value = "action", required = true) final String action) {
+	public ModelAndView tstingBackSelenium(@RequestParam(value = "action", required = true) final String action) {
 		ResponseEntity<String> result;
-		if (action.equals("Run this Back-End test")) {
+		ModelAndView redirect = new ModelAndView(getsuccessBackTest());
+		if (action.equals("Run Back-End test")) {
 			CreateCsvFileForQuotes createCsvFileForQuotes = new CreateCsvFileForQuotes();
 			createCsvFileForQuotes.createQuoteCsvFile();
 			createCsvFileForQuotes.createEntriesCsvFile();
-			result =runATest("backTest");
+			result = runATest("backTest");
 			System.out.println(result);
-		} else if (action.equals("Run this Front-End test")) {
+			System.out.println(result.getBody());
+			String finalResult = result.getBody();
+			if (finalResult == "Fail") {
+				redirect = new ModelAndView(getFailedBackTest());
+			} else {
+				redirect = new ModelAndView(getsuccessBackTest());
+			}
+		}
+		if (action.equals("Run Front-End test")) {
 			result = runATest("frontTest");
 			System.out.println(result);
+			System.out.println(result.getBody());
+			String finalResult = result.getBody();
+			if (finalResult == "Fail") {
+				redirect = new ModelAndView(getFailedFrontTest());
+			} else {
+				redirect = new ModelAndView(getsuccessFrontTest());
+			}
 		}
-		//return REDIRECT_TEST_URL;
+		return redirect;
 
 	}
 
 	public ResponseEntity<String> runATest(@RequestParam(value = "test", defaultValue = "") String methodName) {
 		try {
-
-			// if (StringUtils.isNotBlank(methodName)) {
 			if (methodName == null) {
 				throw new Exception("Unrecognized value: " + methodName);
 			}

@@ -21,12 +21,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.decade.pfe.helper.HttpsHelper;
+import fr.decade.pfe.quote.fils.CreateCsvFileForQuotes;
 
 /**
  * These tests check on your progress thru hybris123
@@ -38,7 +38,9 @@ public class HybrisTests {
 	private Map<String, Object> vars;
 	private JavascriptExecutor js;
 	private static Wait<WebDriver> wait;
-
+	CreateCsvFileForQuotes createCsvFileForQuotes = new CreateCsvFileForQuotes();
+	String id5 = createCsvFileForQuotes.getId5();
+	String id2 = createCsvFileForQuotes.getId2();
 	@Before
 	public void setUp() {
 		System.setProperty("webdriver.gecko.driver", "/home/mariem/Téléchargements/geckodriver");
@@ -62,6 +64,7 @@ public class HybrisTests {
 		// Step # | name | target | value
 		// 1 | open | /backoffice/login.zul |
 		driver.get("https://localhost:9002/backoffice/login.zul");
+		pauseMS(4000);
 		// 2 | setWindowSize | 1332x912 |
 		driver.manage().window().setSize(new Dimension(1909, 1800));
 		pauseMS(4000);
@@ -103,8 +106,10 @@ public class HybrisTests {
 		pauseMS(9000);
 		driver.findElement(By.xpath("//button[contains(text(), 'Refresh')]")).click();
 		pauseMS(18000);
-		Assert.assertEquals(driver.findElement(By.id("eZHQxcl-real")).getText(), "TERMINE");
-		Assert.assertEquals(driver.findElement(By.id("eZHQgdl-real")).getText(), "REUSSI");
+		//Assert.assertEquals(driver.findElement(By.className("ye-com_hybris_cockpitng_editor_defaultenum")).getText(), "SUCCESS");
+		//Assert.assertEquals(driver.findElement(By.id("eZHQgdl-real")).getText(), "REUSSI");
+		Assert.assertNotNull(driver.findElement(By.cssSelector("input[value=\"SUCCESS\"]")));
+		Assert.assertNotNull(driver.findElement(By.cssSelector("input[value=\"FINISHED\"]")));
 	}
 
 	@Test
@@ -139,10 +144,11 @@ public class HybrisTests {
 		pauseMS(2000);
 		driver.findElement(By.name("action")).click();
 		// 11 | click | linkText=23150000 |
-		pauseMS(2000);
-		driver.findElement(By.linkText("23150000")).click();
+		pauseMS(4000);
+		driver.findElement(By.linkText("79732180")).click();
+		pauseMS(4000);
 		// 12 | click | linkText=23150000 |
-		driver.findElement(By.linkText("23150000")).click();
+		driver.findElement(By.linkText("79732180")).click();
 		pauseMS(2000);
 		// 13 | click | css=.breadcrumb > li:nth-child(2) > a |
 		driver.findElement(By.cssSelector(".breadcrumb > li:nth-child(2) > a")).click();
@@ -157,12 +163,12 @@ public class HybrisTests {
 		// 17 | click | css=.btn-primary |
 		driver.findElement(By.cssSelector(".btn-primary")).click();
 		// 18 | click | linkText=23100000 |
-		driver.findElement(By.linkText("23100000")).click();
+		driver.findElement(By.linkText("56265000")).click();
 		// 19 | click | linkText=23100000 |
-		driver.findElement(By.linkText("23100000")).click();
+		driver.findElement(By.linkText("56265000")).click();
 		pauseMS(2000);
 		// 20 | click | linkText=23100000 |
-		driver.findElement(By.linkText("23100000")).click();
+		driver.findElement(By.linkText("56265000")).click();
 		// 21 | click | css=.yCmsComponent > .myAccountLinksHeader |
 		driver.findElement(By.cssSelector(".yCmsComponent > .myAccountLinksHeader")).click();
 		pauseMS(2000);

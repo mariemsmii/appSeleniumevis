@@ -1,4 +1,5 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,9 +41,10 @@
 					<tbody>
 						<form:form method="post">
 							<tr>
-								<th scope="row">Test your Back-End</th>
+								<th scope="row">Test Back-End</th>
+								
 								<td><input type="submit" class="btn btn-outline-primary"
-									value="Run this Back-End test" name="action"></input></td>
+									value="Run Back-End test" name="action"></input></td>
 								<td>
 									<div class="row align-items-center">
 										<div class="alert alert-info" role="alert">this test is
@@ -51,14 +53,17 @@
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">Test your Front-End</th>
-								<td><input type="submit" class="btn btn-outline-primary"
-									value="Run this Front-End test" name="action"></input></td>
+								<th scope="row">Test Front-End</th>
 								<td>
+									<input type="button" class="btn btn-outline-primary" disabled value="Run Front-End test"></input>
+								<td>
+								
 									<div class="row align-items-center">
 										<div class="alert alert-info" role="alert">this test is
 											not run yet</div>
-									</div>
+											
+									</div> 
+									
 								</td>
 							</tr>
 						</form:form>
@@ -81,4 +86,8 @@
 			crossorigin="anonymous"></script>
 	</body>
 </div>
+
+
+
+
 </html>

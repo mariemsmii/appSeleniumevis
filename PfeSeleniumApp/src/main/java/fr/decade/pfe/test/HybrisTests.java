@@ -176,10 +176,10 @@ public class HybrisTests {
 		driver.findElement(By.linkText("Quotes")).click();
 		// 23 | click | css=.responsive-table-item:nth-child(5) .btn |
 		driver.findElement(By.cssSelector(".responsive-table-item:nth-child(5) .btn")).click();
-		Assert.assertEquals(driver.findElement(By.id("status-23150000")).getText(), "Ordered");
-		Assert.assertEquals(driver.findElement(By.id("status-21310000")).getText(), "buyer Rejected");
-		Assert.assertEquals(driver.findElement(By.id("status-23100000")).getText(), "Ordered");
-		Assert.assertEquals(driver.findElement(By.id("status-21300000")).getText(), "buyer Rejected");
+		Assert.assertEquals(driver.findElement(By.id("status-26500386")).getText(), "buyer Rejected");
+		Assert.assertEquals(driver.findElement(By.id("status-22933293")).getText(), "buyer Rejected");
+		Assert.assertTrue(driver.findElement(By.id("status-79732180")).getText().contains("Ordered"));
+		Assert.assertTrue(driver.findElement(By.id("status-56265000")).getText().contains("Ordered"));
 	}
 	public static void pauseMS(long... pause) {
 		try {

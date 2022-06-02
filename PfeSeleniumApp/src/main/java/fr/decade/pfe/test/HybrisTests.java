@@ -169,6 +169,7 @@ public class HybrisTests {
 		pauseMS(2000);
 		// 20 | click | linkText=23100000 |
 		driver.findElement(By.linkText("56265000")).click();
+		pauseMS(2000);
 		// 21 | click | css=.yCmsComponent > .myAccountLinksHeader |
 		driver.findElement(By.cssSelector(".yCmsComponent > .myAccountLinksHeader")).click();
 		pauseMS(2000);
